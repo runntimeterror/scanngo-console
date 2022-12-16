@@ -46,7 +46,7 @@ export default function ClientsPage() {
   };
 
   const fetchClients = async () => {
-    const response = await fetch("http://localhost:8080/client");
+    const response = await fetch(`${process.env.REACT_APP_API_ENDPOINT}/client`);
     const data = await response.json();
     setData(data)
   }

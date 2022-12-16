@@ -6,7 +6,6 @@ import { styled } from '@mui/material/styles';
 import { fCurrency } from '../../../utils/formatNumber';
 // components
 import Label from '../../../components/label';
-import { ColorPreview } from '../../../components/color-utils';
 
 // ----------------------------------------------------------------------
 
@@ -25,15 +24,17 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
-
+  const { name, imageUrl, price, active } = product;
+  console.log(product)
+  const status = active ? 'Active': 'Inacative'
+  const img = `/assets/images/products/${imageUrl}`
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {status && (
           <Label
             variant="filled"
-            color={(status === 'sale' && 'error') || 'info'}
+            color={(!active  && 'error') || 'info'}
             sx={{
               zIndex: 9,
               top: 16,
@@ -45,7 +46,7 @@ export default function ShopProductCard({ product }) {
             {status}
           </Label>
         )}
-        <StyledProductImg alt={name} src={cover} />
+        <StyledProductImg alt={name} src={img} />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
@@ -56,7 +57,7 @@ export default function ShopProductCard({ product }) {
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+         
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -66,7 +67,7 @@ export default function ShopProductCard({ product }) {
                 textDecoration: 'line-through',
               }}
             >
-              {priceSale && fCurrency(priceSale)}
+              {price && fCurrency(price)}
             </Typography>
             &nbsp;
             {fCurrency(price)}
