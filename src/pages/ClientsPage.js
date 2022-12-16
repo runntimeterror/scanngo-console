@@ -31,7 +31,6 @@ export default function ClientsPage() {
     "primaryContact": ""
   });
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
