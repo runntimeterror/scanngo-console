@@ -74,7 +74,7 @@ export default function ClientsPage() {
 
   const handleAddClient = async () => {
     console.log("payload=>", clientData)
-    fetch('http://localhost:8080/client', {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/client`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
